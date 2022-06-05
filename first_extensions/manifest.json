@@ -1,14 +1,23 @@
 {
-    "name": "練習",
+    "name": "下載影片",
     "description": "練習練習練習練習練習練習練習",
     "version": "1.0",
     "manifest_version": 3,
     "permissions": [
-      "tabs"
+      "activeTab",
+      "tabs",
+      "contextMenus",
+      "notifications"
     ],
     "action": {
       "default_title": "TITLE",
-      "default_icon": "icon.png",
+      "default_icon": "favicon.ico",
       "default_popup": "test.html"
-    }
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://www.youtube.com/*"],
+        "js": ["background.js"]
+      }
+    ]
   }

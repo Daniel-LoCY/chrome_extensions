@@ -6,18 +6,17 @@
     "permissions": [
       "activeTab",
       "tabs",
-      "contextMenus",
-      "notifications"
+      "scripting"
     ],
     "action": {
       "default_title": "TITLE",
-      "default_icon": "favicon.ico",
+      "default_icon": {"16": "cat.png"},
       "default_popup": "test.html"
     },
-    "content_scripts": [
-      {
-        "matches": ["https://www.youtube.com/*"],
-        "js": ["background.js"]
-      }
-    ]
+    "icons": {
+      "16": "cat.png"
+    },
+    "background": {
+      "service_worker": "background.js"
+    }
   }

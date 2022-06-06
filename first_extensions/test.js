@@ -1,6 +1,7 @@
 let url = ""
 let download_url = "http://daniel0422.ddns.net/";
 let original_url = "https://www.youtube.com/"
+
 window.onload = function(){
   chrome.tabs.query({active:true, lastFocusedWindow:true}, tabs => {
     url = tabs[0].url
@@ -11,11 +12,19 @@ window.onload = function(){
     }
     else{
       $("#download").hide()
-      $("div").append(`<p>此網站不支援<p>`)
+      $("div").append(`<span>此網站不支援<span>`)
     }
   })
 }
   
+
 $("#download").click(function(){
-  location.href = url
+  let strWindowFeatures = `
+    menubar=no,
+    location=no,
+    resizable=no,
+    scrollbars=no,
+    status=no
+  `;
+  window.open(url, '', strWindowFeatures)
 })

@@ -10,13 +10,16 @@
     ],
     "action": {
       "default_title": "TITLE",
-      "default_icon": {"16": "cat.png"},
-      "default_popup": "test.html"
+      "default_popup": "test.html",
+      "default_icon": "cat.png"
     },
-    "icons": {
-      "16": "cat.png"
-    },
-    "background": {
-      "service_worker": "background.js"
-    }
+    "content_scripts": [
+      {
+        "matches": ["https://www.youtube.com/*"],
+        "js": ["content.js"]
+      }
+    ],
+    "host_permissions": [
+      "<all_urls>"
+    ]
   }

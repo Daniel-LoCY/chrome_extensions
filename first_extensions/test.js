@@ -28,3 +28,7 @@ $("#download").click(function(){
   `;
   window.open(url, '', strWindowFeatures)
 })
+
+chrome.action.onClicked.addListener(() => {
+  console.log(123)
+})

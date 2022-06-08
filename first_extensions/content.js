@@ -12,17 +12,18 @@ console.log("Background Start")
 function close_stop_window(){
     let stop_window = document.getElementsByTagName("yt-confirm-dialog-renderer")[0] //停止視窗
     if(stop_window != undefined){
+        console.log(stop_window)
         let s = stop_window.getElementsByTagName("yt-formatted-string")
         for(let i=0; i<s.length; i++){
             if(s[i].innerHTML == "是"){
                 s[i].click()
+                stop_window.remove()
                 document.getElementsByTagName("ytd-popup-container")[0].innerHTML = ""
+                let play_btn = document.getElementsByClassName("ytp-play-button")[0]
+                setTimeout(function(){play_btn.click()}, 1000)
                 console.log("Close")
             }
         }
-        
-        // let btn = stop_window.getElementsByTagName("yt-formatted-string")[0] //確認按鈕
-        // btn.click()
     }
 }
 

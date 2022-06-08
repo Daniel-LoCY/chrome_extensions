@@ -19,11 +19,17 @@ function close_stop_window(){
                 s[i].click()
                 stop_window.remove()
                 document.getElementsByTagName("ytd-popup-container")[0].innerHTML = ""
-                let play_btn = document.getElementsByClassName("ytp-play-button")[0]
-                setTimeout(function(){play_btn.click()}, 1000)
-                console.log("Close")
+                console.log("Close Stop Window")
             }
         }
+        let player = document.getElementById("ytd-player")
+        let check = player.getElementsByTagName("div")[1]
+        // while(check.className.includes("paused-mode")){
+        //     let play_btn = document.getElementsByClassName("ytp-play-button")[0]
+        //     play_btn.click()
+        //     console.log('Click')
+        // }
+        console.log("Continue")
     }
 }
 

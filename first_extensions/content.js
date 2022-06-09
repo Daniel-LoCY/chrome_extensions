@@ -7,12 +7,17 @@
 
 // Notification.requestPermission()
 
+function delay(time) {
+  return new Promise(resolve => setTimeout(resolve, time));
+}
+
 console.log("Background Start")
 
-function close_stop_window(){
+async function close_stop_window(){
     let stop_window = document.getElementsByTagName("yt-confirm-dialog-renderer")[0] //停止視窗
     if(stop_window != undefined){
-        console.log(stop_window)
+        clearInterval(timer)
+        // console.log(stop_window)
         let s = stop_window.getElementsByTagName("yt-formatted-string")
         for(let i=0; i<s.length; i++){
             if(s[i].innerHTML == "是"){
@@ -22,18 +27,28 @@ function close_stop_window(){
                 console.log("Close Stop Window")
             }
         }
-        let player = document.getElementById("ytd-player")
-        let check = player.getElementsByTagName("div")[1]
-        // while(check.className.includes("paused-mode")){
-        //     let play_btn = document.getElementsByClassName("ytp-play-button")[0]
-        //     play_btn.click()
-        //     console.log('Click')
-        // }
+        await delay(1000)
+        scroll(0,1)
+        while(true){
+          let player = document.getElementById("ytd-player")
+          let check = player.getElementsByTagName("div")[1]
+          let play_btn = document.getElementsByClassName("ytp-play-button")[0]
+          play_btn.click()
+          await delay(1000)
+          console.log(check.className.includes("paused-mode"))
+          if(check.className.includes("paused-mode")){
+              play_btn.click()
+              console.log('Click')
+              await delay(1000)
+              break
+          }
+        }
         console.log("Continue")
+        timer = setInterval(function(){ close_stop_window() }, 1000)
     }
 }
 
-setInterval(function(){ close_stop_window() }, 1000)
+let timer = setInterval(function(){ close_stop_window() }, 1000)
 
 {/* <yt-confirm-dialog-renderer dialog="" class="style-scope ytd-popup-container" tabindex="-1"><!--css-build:shady--><div id="spinner" class="style-scope yt-confirm-dialog-renderer" hidden="">
   <tp-yt-paper-spinner class="style-scope yt-confirm-dialog-renderer" aria-hidden="true"><!--css-build:shady--><div id="spinnerContainer" class="  style-scope tp-yt-paper-spinner"><div class="spinner-layer layer-1 style-scope tp-yt-paper-spinner"><div class="circle-clipper left style-scope tp-yt-paper-spinner"><div class="circle style-scope tp-yt-paper-spinner"></div></div><div class="circle-clipper right style-scope tp-yt-paper-spinner"><div class="circle style-scope tp-yt-paper-spinner"></div></div></div><div class="spinner-layer layer-2 style-scope tp-yt-paper-spinner"><div class="circle-clipper left style-scope tp-yt-paper-spinner"><div class="circle style-scope tp-yt-paper-spinner"></div></div><div class="circle-clipper right style-scope tp-yt-paper-spinner"><div class="circle style-scope tp-yt-paper-spinner"></div></div></div><div class="spinner-layer layer-3 style-scope tp-yt-paper-spinner"><div class="circle-clipper left style-scope tp-yt-paper-spinner"><div class="circle style-scope tp-yt-paper-spinner"></div></div><div class="circle-clipper right style-scope tp-yt-paper-spinner"><div class="circle style-scope tp-yt-paper-spinner"></div></div></div><div class="spinner-layer layer-4 style-scope tp-yt-paper-spinner"><div class="circle-clipper left style-scope tp-yt-paper-spinner"><div class="circle style-scope tp-yt-paper-spinner"></div></div><div class="circle-clipper right style-scope tp-yt-paper-spinner"><div class="circle style-scope tp-yt-paper-spinner"></div></div></div></div></tp-yt-paper-spinner>

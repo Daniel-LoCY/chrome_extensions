@@ -10,14 +10,16 @@ window.onload = function(){
       url = s.split('&')[0]
     }
     else{
-      $("#download").hide()
-      $("div").append(`此頁面不支援`)
+      document.querySelector("#download").setAttribute('style', 'display:none')
+      document.querySelector("div").innerHTML += `<pre>此頁面不支援</pre>`
     }
   })
 }
   
 
-$("#download").click(function(){
+document.querySelector("#download").addEventListener('click', newWindow)
+
+function newWindow(){
   let strWindowFeatures = '\
     menubar=no,\
     location=no,\
@@ -28,7 +30,7 @@ $("#download").click(function(){
     width=500\
   '
   window.open('./download.html?x='+url, '', strWindowFeatures)
-})
+}
 
 // chrome.action.onClicked.addListener(() => {
 //   console.log(123)

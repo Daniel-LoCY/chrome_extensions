@@ -11,6 +11,37 @@ function delay(time) {
   return new Promise(resolve => setTimeout(resolve, time));
 }
 
+window.onload = async function(){
+  let bootstrap = document.createElement('link')
+  bootstrap.href = 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css'
+  bootstrap.type = 'text/css'
+  bootstrap.rel = 'stylesheet'
+  document.querySelector('head').append(bootstrap)
+  while(true){
+    let list = document.querySelector('div#info.style-scope.ytd-watch-flexy')
+    console.log(list)
+    if(list != null || list != undefined){
+      let btn = document.createElement('button')
+      btn.type = 'button'
+      btn.innerHTML = '下載影片'
+      btn.classList.add('btn', 'btn-primary')
+      let select = document.createElement('select')
+      let option = document.createElement('option')
+      option.innerHTML = 1
+      select.append(option)
+      let div = document.createElement('div')
+      div.append(document.createElement('br'))
+      div.append(btn)
+      div.append(select)
+      list.append(div)
+      break
+    }
+    else{
+      await delay(1000)
+    }
+  }
+}
+
 // console.log("Background Start!!!")
 
 // async function close_stop_window(){

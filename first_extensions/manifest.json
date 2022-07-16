@@ -3,6 +3,9 @@
     "description": "練習練習練習練習練習練習練習",
     "version": "1.0",
     "manifest_version": 3,
+    "icons" : {
+      "128": "128.png"
+    },
     "permissions": [
       "activeTab",
       "tabs",
@@ -11,11 +14,13 @@
     "action": {
       "default_title": "TITLE",
       "default_popup": "test.html",
-      "default_icon": "cat.png"
+      "default_icon": {
+        "128": "128.png"
+      }
     },
     "content_scripts": [
       {
-        "matches": ["https://www.youtube.com/*"],
+        "matches": ["https://www.youtube.com/watch*", "https://www.youtube.com/playlist*"],
         "js": ["content.js"]
       }
     ],

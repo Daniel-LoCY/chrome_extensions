@@ -6,6 +6,7 @@ window.onload = function(){
   chrome.tabs.query({active:true, lastFocusedWindow:true}, tabs => {
     url = tabs[0].url
     if(url.includes(original_url_video) || url.includes(original_url_playlist)){
+      document.querySelector("#main").removeAttribute('style')
       if(url.includes(original_url_playlist)){
         document.querySelector('#res').classList.add('d-none')
         document.querySelector("#download").value = `開始下載播放清單`
@@ -16,7 +17,6 @@ window.onload = function(){
       url = s.split('&')[0]
     }
     else{
-      document.querySelector("#main").setAttribute('style', 'display:none')
       document.querySelector("#not").removeAttribute('style')
     }
   })

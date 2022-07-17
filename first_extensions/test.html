@@ -1,11 +1,32 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
+    <link href="./bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <style>
+        div#main {
+            width: 250px;
+        }
+        div.input-group {
+            padding-top: 5px;
+        }
+    </style>
 </head>
 <body>
     <div id="main">
-        <input type="button" id="download" value="開始下載"/>
+        <div class="input-group" id="res">
+            <select id="select" class="form-select">
+                <option value="">請選擇</option>
+            </select>
+            <input class="btn btn-success" type="button" id="download_res" value="開始下載"/>
+        </div>
+        <div class="input-group">
+            <input style="width:100%" class="btn btn-primary" type="button" id="download" value="資料讀取中，請稍後"/>
+        </div>
+    </div>
+    <div id="not" style="display: none;">
+        <pre style="font-size: 25px;">此頁面不支援</pre>
     </div>
 </body>
 
+<script src="./jquery.min.js"></script>
 <script src="test.js"></script>

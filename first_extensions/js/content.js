@@ -11,7 +11,7 @@ function delay(time) {
   return new Promise(resolve => setTimeout(resolve, time));
 }
 
-window.onload = async function(){
+async function add(){
   let bootstrap = document.createElement('link')
   bootstrap.href = 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css'
   bootstrap.type = 'text/css'

@@ -1,15 +1,13 @@
 {
-    "name": "下載Youtube影片",
-    "description": "目前只支援HTTP 漸進式下載，所以可能無法下載到線上觀看的最高畫質",
-    "version": "1.1",
+    "name": "Youtube Extension",
+    "description": "1.下載功能目前只支援HTTP 漸進式下載，所以可能無法下載到線上觀看的最高畫質\n2.防止Youtube跳出繼續播放確認視窗",
+    "version": "2.0",
     "manifest_version": 3,
     "icons" : {
       "128": "128.png"
     },
     "permissions": [
-      "activeTab",
-      "tabs",
-      "scripting"
+      "activeTab"
     ],
     "action": {
       "default_title": "TITLE",
@@ -20,11 +18,14 @@
     },
     "content_scripts": [
       {
-        "matches": ["https://www.youtube.com/watch*", "https://www.youtube.com/playlist*"],
+        "matches": ["https://www.youtube.com/*"],
         "js": ["js/content.js"]
       }
     ],
-    "host_permissions": [
-      "<all_urls>"
-    ]
+    "host_permissions":[
+        "https://*.youtube.com/*"
+    ],
+    "background": {
+      "service_worker": "js/background.js"
+    }
   }

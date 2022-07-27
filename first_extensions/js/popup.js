@@ -16,7 +16,6 @@ const download = () => {
       }
       else{
         get_size(url)
-        get_res(url)
       }
       let s = url.split("m/")[1]
       url = s.split('&')[0]
@@ -27,10 +26,6 @@ const download = () => {
     }
   })
 }
-  
-
-document.querySelector("#download").addEventListener('click', function(){newWindow('')})
-document.querySelector("#download_res").addEventListener('click', function(){download_res()})
 
 function newWindow(res=0){
   let strWindowFeatures = '\
@@ -121,6 +116,10 @@ function get_size(url, _async=true){
           localStorage.setItem('need_email', false)
         }
       }
+    }).then(() => {
+      if(_async==true)get_res(url)
+      document.querySelector("#download").addEventListener('click', function(){newWindow('')})
+      document.querySelector("#download_res").addEventListener('click', function(){download_res()})
     })
 }
 

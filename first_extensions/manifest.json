@@ -1,7 +1,7 @@
 {
     "name": "Youtube Extension",
     "description": "1.下載功能目前只支援HTTP 漸進式下載，所以可能無法下載到線上觀看的最高畫質\n2.防止Youtube跳出繼續播放確認視窗",
-    "version": "2.1",
+    "version": "2.2",
     "manifest_version": 3,
     "icons" : {
       "128": "128.png"
@@ -11,7 +11,7 @@
     ],
     "action": {
       "default_title": "TITLE",
-      "default_popup": "test.html",
+      "default_popup": "popup.html",
       "default_icon": {
         "128": "128.png"
       }

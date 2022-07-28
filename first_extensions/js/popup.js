@@ -12,7 +12,7 @@ const download = () => {
       if(url.includes(original_url_playlist)){
         document.querySelector('#res').classList.add('d-none')
         document.querySelector("#download").value = `開始下載播放清單`
-        get_size(url, false)
+        get_size(url)
       }
       else{
         get_size(url)
@@ -21,8 +21,8 @@ const download = () => {
       url = s.split('&')[0]
     }
     else{
-      document.querySelector("#main").setAttribute('style', 'display:none')
-      document.querySelector("#not").removeAttribute('style')
+      document.querySelector("#main").classList.add('d-none')
+      document.querySelector("#not").classList.remove('d-none')
     }
   })
 }
@@ -54,6 +54,7 @@ function get_res(url){
   $.ajax({
     url : `${api_host}/res?url=${url}`,
     type: 'GET',
+    async: false,
     success: function(data){
       $.each(data.res, function(i, item){
         let select = document.querySelector("#select")
@@ -78,7 +79,7 @@ function download_res(){
 
 function load(){
   if(localStorage.getItem('email') == null){
-    document.querySelector('#main').setAttribute('style', 'display: none')
+    // document.querySelector('#main').setAttribute('style', 'display: none')
     let input = document.createElement('input')
     input.placeholder = '請輸入電子郵件'
     input.setAttribute('id', 'email_in')
@@ -90,24 +91,28 @@ function load(){
         // document.cookie = `email=${val}; path=/; max-age=${max}`
         localStorage.setItem('email', email)
         document.querySelector('#email_in').remove()
-        document.querySelector('#main').removeAttribute('style')
         download()
       }  
     })
   }
   else
     download()
+  document.querySelector('#main').classList.remove('d-none')
 }
 
 window.onload = () => {
   load()
+  let button = document.querySelectorAll('input[type=button]')
+  button.forEach(e => {
+    e.disabled = true
+  })
 }
 
 function get_size(url, _async=true){
     $.ajax({
       url: `${api_host}/get_size?url=${url}`,
       type: 'GET',
-      async: _async,
+      // async: _async,
       success: function(data){
         if(data.size > 360){
           localStorage.setItem('need_email', true)
@@ -120,6 +125,10 @@ function get_size(url, _async=true){
       if(_async==true)get_res(url)
       document.querySelector("#download").addEventListener('click', function(){newWindow('')})
       document.querySelector("#download_res").addEventListener('click', function(){download_res()})
+      let button = document.querySelectorAll('input[type=button]')
+      button.forEach(e => {
+        e.disabled = false
+      })
     })
 }
 

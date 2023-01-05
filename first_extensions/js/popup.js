@@ -2,8 +2,7 @@ let url = ""
 let original_url_video = "https://www.youtube.com/watch"
 let original_url_playlist = "https://www.youtube.com/playlist"
 
-let api_host = 'http://20.80.46.248:5000'
-// let api_host = 'http://127.0.0.1:5000'
+let api_host = 'https://flaskapi.herokuapp.com'
 
 const download = () => {
   chrome.tabs.query({active:true, lastFocusedWindow:true}, tabs => {

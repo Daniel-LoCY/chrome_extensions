@@ -1,0 +1,22 @@
+{
+    "name": "CSDN Auto Expand",
+    "description": "自動展開CSDN文章",
+    "version": "1.0",
+    "manifest_version": 3,
+    "icons" : {
+      "128": "128.png"
+    },
+    "action": {
+      "default_title": "TITLE",
+      "default_popup": "popup.html",
+      "default_icon": {
+        "128": "128.png"
+      }
+    },
+    "content_scripts": [
+      {
+        "matches": ["https://blog.csdn.net/*"],
+        "js": ["js/content.js"]
+      }
+    ]
+  }

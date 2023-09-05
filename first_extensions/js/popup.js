@@ -61,15 +61,21 @@ function get_res(url, type=''){
       url : `${api_host}/res?url=${url}`,
       type: 'GET',
       success: function(data){
-        $.each(data.res, function(i, item){
-          let select = document.querySelector("#select")
-          let option = document.createElement('option')
-          option.innerHTML = item
-          option.value = item
-          select.append(option)
-          if(i == data.res.length-1)
-            document.querySelector("#download").value = `直接下載最高畫質(${item})`
-        })
+        if(data.res != 'error'){
+          $.each(data.res, function(i, item){
+            let select = document.querySelector("#select")
+            let option = document.createElement('option')
+            option.innerHTML = item
+            option.value = item
+            select.append(option)
+            if(i == data.res.length-1)
+              document.querySelector("#download").value = `直接下載最高畫質(${item})`
+          })
+        }
+        else{
+          alert('發生錯誤')
+          return
+        }
       }
     }).then(enable_button())
   }
@@ -110,10 +116,12 @@ function load(){
 window.onload = () => {
   // load()
   document.querySelector('#main').classList.remove('d-none')
-  let button = document.querySelectorAll('input[type=button]')
-  button.forEach(e => {
-    e.disabled = true
-  })
+  // let button = document.querySelectorAll('input[type=button]')
+  // button.forEach(e => {
+  //   e.disabled = true
+  // })
+  document.querySelector('#download').disabled = true
+  document.querySelector('#download_res').disabled = true
   download()
 }
 

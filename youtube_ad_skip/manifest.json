@@ -1,0 +1,21 @@
+{
+    "name": "Youtube Ad Skipper",
+    "description": "Skip Youtube Ads",
+    "version": "1.0",
+    "manifest_version": 3,
+    "icons" : {
+      "128": "128.png"
+    },
+    "permissions": [
+      "activeTab"
+    ],
+    "content_scripts": [
+      {
+        "matches": ["https://www.youtube.com/*"],
+        "js": ["js/content.js"]
+      }
+    ],
+    "host_permissions":[
+        "https://*.youtube.com/*"
+    ]
+  }
